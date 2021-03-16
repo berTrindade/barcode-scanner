@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar'
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 
-export default function App () {
+import React, { useRef, useState } from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import { RNCamera } from 'react-native-camera'
+import styles from './styles'
+
+const App: React.FC = () => {
+  const cameraRef = useRef();
+  const [barcode, setBarcode] = useState([])
+
   return (
     <View style={styles.container}>
-      <Text>Hello!</Text>
-      <StatusBar style="auto" />
+      <Text>Hello Bernardo!</Text>
+      <RNCamera
+      ref={cameraRef}      
+
+      style={{
+          flex: 1,
+          width: '100%',
+        }}
+
+        onGoogleVisionBarcodesDetected={({ barcodes }) => setBarcode({ barcodes }) }
+      />
+        <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+          <TouchableOpacity onPress={() => takePicture(this.camera)} style={styles.capture}>
+              <Text style={{ fontSize: 14 }}> SNAP </Text>
+          </TouchableOpacity>
+        </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-})
+export default App
+
