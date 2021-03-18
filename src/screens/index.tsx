@@ -3,7 +3,7 @@ import Scan from './Scan'
 import Result from './Result'
 
 export {
-    Splash,
-    Result,
-    Scan
+  Splash,
+  Result,
+  Scan
 }

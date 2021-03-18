@@ -1,10 +1,35 @@
-import React from "react"
-import { View } from "react-native"
+import React from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import styles from '../styles'
+import PropTypes from 'prop-types'
 
-const Spash: React.FC = () => {
-    return (
-        <View>Spash Screen</View>
-    )
+import { RootStackParamList } from '../types'
+export interface SplashScreenProps {
+  navigation: StackNavigationProp<RootStackParamList, 'Splash'>
 }
 
-export default Spash
+const Splash: React.FC<SplashScreenProps> = ({ navigation }) => {
+  const onScanAgainClick = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Scan' }]
+    })
+  }
+
+  return (
+        <View style={styles._mainContainer}>
+            <TouchableOpacity
+                onPress={onScanAgainClick}
+                style={styles._btn}>
+                <Text style={{ color: 'white' }}>Scan</Text>
+            </TouchableOpacity>
+        </View>
+  )
+}
+
+export default Splash
+
+Splash.propTypes = {
+  navigation: PropTypes.any.isRequired
+}

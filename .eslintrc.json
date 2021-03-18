@@ -7,6 +7,7 @@
         "plugin:react/recommended",
         "standard"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -15,13 +16,18 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react", 
+        "@typescript-eslint"
     ],
     "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error"]
     },
     "settings": {
         "import/resolver": {
-            "typescript": {},
+            "typescript": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
             "babel-plugin-root-import": {
             "rootPathPrefix": "~",
             "rootPathSuffix": "src"
