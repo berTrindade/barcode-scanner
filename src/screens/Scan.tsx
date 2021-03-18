@@ -16,9 +16,6 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   const [howMuchTime, setHowMuchTime] = useState<Number>()
 
   const onBarcodeScanned = useCallback((code) => {
-    console.log('[onBarcodeScanned] code: ', code)
-    console.log('[onBarcodeScanned] howMuchTime: ', howMuchTime)
-
     setIsBarcodeRead(true)
 
     navigation.reset({
@@ -34,10 +31,7 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   }, [howMuchTime])
 
   useEffect(() => {
-    console.log('[useEffect]')
-
     if (isCameraReady && isBarcodeRead) {
-      console.log('[useEffect if]')
       const end = Date.now()
       const diff = end - startTime
 
@@ -46,8 +40,6 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   }, [isBarcodeRead, isCameraReady])
 
   const onCameraReady = useCallback(() => {
-    console.log('onCameraReady')
-
     setStartTime(Date.now())
     setIsCameraReady(true)
   }, [])
