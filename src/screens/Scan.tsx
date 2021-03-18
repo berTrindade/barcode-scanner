@@ -15,7 +15,10 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   const [startTime, setStartTime] = useState<any>()
   const [howMuchTime, setHowMuchTime] = useState<Number>()
 
-  const _onBarcodeScanned = useCallback((code) => {
+  const onBarcodeScanned = useCallback((code) => {
+    console.log('[onBarcodeScanned] code: ', code)
+    console.log('[onBarcodeScanned] howMuchTime: ', howMuchTime)
+
     setIsBarcodeRead(true)
 
     navigation.reset({
@@ -31,7 +34,10 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   }, [howMuchTime])
 
   useEffect(() => {
+    console.log('[useEffect]')
+
     if (isCameraReady && isBarcodeRead) {
+      console.log('[useEffect if]')
       const end = Date.now()
       const diff = end - startTime
 
@@ -40,6 +46,8 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
   }, [isBarcodeRead, isCameraReady])
 
   const onCameraReady = useCallback(() => {
+    console.log('onCameraReady')
+
     setStartTime(Date.now())
     setIsCameraReady(true)
   }, [])
@@ -53,7 +61,7 @@ const Scan: React.FC<ScanScreenProps> = ({ navigation }) => {
                 flashMode={RNCamera.Constants.FlashMode.auto}
                 type={RNCamera.Constants.Type.back}
                 autoFocus={RNCamera.Constants.AutoFocus.on}
-                onBarCodeRead={_onBarcodeScanned}
+                onBarCodeRead={onBarcodeScanned}
                 barCodeTypes={[
                   RNCamera.Constants.BarCodeType.datamatrix,
                   RNCamera.Constants.BarCodeType.qr,

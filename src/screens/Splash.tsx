@@ -18,10 +18,10 @@ const Splash: React.FC<SplashScreenProps> = ({ navigation }) => {
   }
 
   return (
-        <View style={styles._mainContainer}>
+        <View style={styles.mainContainer}>
             <TouchableOpacity
                 onPress={onScanAgainClick}
-                style={styles._btn}>
+                style={styles.btn}>
                 <Text style={{ color: 'white' }}>Scan</Text>
             </TouchableOpacity>
         </View>

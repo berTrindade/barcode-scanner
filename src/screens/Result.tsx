@@ -21,7 +21,7 @@ const Result: React.FC<ResultcreenProps> = ({ navigation, route }) => {
     params: { type, data, time }
   } = route
 
-  const _onScanAgainClick = () => {
+  const onScanAgainClick = () => {
     navigation.reset({
       index: 0,
       routes: [{ name: 'Scan' }]
@@ -34,7 +34,7 @@ const Result: React.FC<ResultcreenProps> = ({ navigation, route }) => {
             <Text style={styles.txtStyle}>Barcode Data: {data}</Text>
             <Text style={styles.txtStyle}>Barcode Time (ms): {time}</Text>
             <TouchableOpacity
-                onPress={_onScanAgainClick}
+                onPress={onScanAgainClick}
                 style={styles.btn}>
                 <Text style={{ color: 'white' }}>Scan Again</Text>
             </TouchableOpacity>
